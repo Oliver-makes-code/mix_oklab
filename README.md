@@ -4,7 +4,7 @@ You provide it with a start hex, an end hex, and an optional number of midpoints
 
 ## Installation
 
-`deno install -I https://oliver-makes-code.github.io/mix_oklab/mix_oklab.ts`
+`deno install -I -g https://oliver-makes-code.github.io/mix_oklab/mix_oklab.ts`
 
 ## Usage
 
