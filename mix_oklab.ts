@@ -42,9 +42,9 @@ const kLMStoCONE: Mat3 = [
 function oklabMix(colA: Vec3, colB: Vec3, h: number): Vec3 {
     const lmsA = powVec3(mat3MultiplyVec3(kCONEtoLMS, colA), 1.0 / 3.0);
     const lmsB = powVec3(mat3MultiplyVec3(kCONEtoLMS, colB), 1.0 / 3.0);
-    
+
     const lms = mix(lmsA, lmsB, h);
-    
+
     return mat3MultiplyVec3(kLMStoCONE, [
         lms[0] * lms[0] * lms[0],
         lms[1] * lms[1] * lms[1],
@@ -121,16 +121,16 @@ cli.register({
         midpoints += 1;
         for (let i = 0; i <= midpoints; i++) {
             const color = oklabMix(Start, End, i / midpoints);
-        
+
             const hexColor = linearRGBtoHex(color);
             const hexString = hexToString(hexColor);
-        
+
             const r = (hexColor >> 16) & 0xFF;
             const g = (hexColor >> 8) & 0xFF;
             const b = hexColor & 0xFF;
-        
+
             const ansiBlock = `\x1b[48;2;${r};${g};${b}m    \x1b[0m`;
-        
+
             console.log(`${ansiBlock} ${hexString}`);
         }
     },
