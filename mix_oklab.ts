@@ -3,7 +3,7 @@ import { CLI, named, optional, Builtin } from "https://oliver-makes-code.github.
 type Vec3 = [number, number, number];
 type Mat3 = [Vec3, Vec3, Vec3];
 
-function mat3_multiply_vec3(mat: Mat3, vec: Vec3): Vec3 {
+function mat3MultiplyVec3(mat: Mat3, vec: Vec3): Vec3 {
     return [
         mat[0][0] * vec[0] + mat[0][1] * vec[1] + mat[0][2] * vec[2],
         mat[1][0] * vec[0] + mat[1][1] * vec[1] + mat[1][2] * vec[2],
@@ -40,12 +40,12 @@ const kLMStoCONE: Mat3 = [
 ];
 
 function oklabMix(colA: Vec3, colB: Vec3, h: number): Vec3 {
-    const lmsA = powVec3(mat3_multiply_vec3(kCONEtoLMS, colA), 1.0 / 3.0);
-    const lmsB = powVec3(mat3_multiply_vec3(kCONEtoLMS, colB), 1.0 / 3.0);
+    const lmsA = powVec3(mat3MultiplyVec3(kCONEtoLMS, colA), 1.0 / 3.0);
+    const lmsB = powVec3(mat3MultiplyVec3(kCONEtoLMS, colB), 1.0 / 3.0);
     
     const lms = mix(lmsA, lmsB, h);
     
-    return mat3_multiply_vec3(kLMStoCONE, [
+    return mat3MultiplyVec3(kLMStoCONE, [
         lms[0] * lms[0] * lms[0],
         lms[1] * lms[1] * lms[1],
         lms[2] * lms[2] * lms[2]
